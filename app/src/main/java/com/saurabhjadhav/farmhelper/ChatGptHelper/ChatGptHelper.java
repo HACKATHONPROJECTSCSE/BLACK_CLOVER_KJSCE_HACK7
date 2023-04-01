@@ -187,7 +187,6 @@ public class ChatGptHelper extends AppCompatActivity {
                     + "for (var i =" + paragraphCount + "-1; i < paragraphs.length; i++) {"
                     + "combinedText+= paragraphs[i].textContent;"
                     + " }combinedText;" ;
-            "Saurabh"
 
             webView.evaluateJavascript(allParagraph, new ValueCallback<String>() {
                 @Override
@@ -195,6 +194,7 @@ public class ChatGptHelper extends AppCompatActivity {
 
                     String paragraphString = value;
                     String utteranceId = UUID.randomUUID().toString();
+                    textToSpeech.setLanguage(Locale.getDefault());
                     textToSpeech.speak(paragraphString, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
 
                 }
