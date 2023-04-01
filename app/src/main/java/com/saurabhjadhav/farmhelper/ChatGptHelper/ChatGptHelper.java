@@ -194,6 +194,7 @@ public class ChatGptHelper extends AppCompatActivity {
 
                     String paragraphString = value;
                     String utteranceId = UUID.randomUUID().toString();
+                    textToSpeech.setLanguage(Locale.getDefault());
                     textToSpeech.speak(paragraphString, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
 
                 }
