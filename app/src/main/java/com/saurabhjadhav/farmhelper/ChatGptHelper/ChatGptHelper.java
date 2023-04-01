@@ -1,13 +1,5 @@
 package com.saurabhjadhav.farmhelper.ChatGptHelper;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -31,6 +23,14 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.saurabhjadhav.farmhelper.R;
 
@@ -84,8 +84,6 @@ public class ChatGptHelper extends AppCompatActivity {
         webView.setWebViewClient(new MyWebViewClient());
         webView.loadUrl("https://chat.openai.com");
 
-        /*Alertnate code for  startActivityForResult(intent,REQUEST_CODE_SPEECH_INPUT);
-          This code replaces deprecated startActivityForResult() method*/
         someActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
@@ -103,24 +101,24 @@ public class ChatGptHelper extends AppCompatActivity {
                 }
             }
         });
-        // Create an UtteranceProgressListener object to handle callbacks
+
         UtteranceProgressListener utteranceProgressListener = new UtteranceProgressListener() {
             @Override
             public void onStart(String utteranceId) {
-                // Called when TTS starts speaking
+
             }
 
             @Override
             public void onDone(String utteranceId) {
-                // Called when TTS finishes speaking
+
             }
 
             @Override
             public void onError(String utteranceId) {
-                // Called when TTS encounters an error
+
             }
         };
-        // Add the UtteranceProgressListener to the TextToSpeech object
+
         textToSpeech.setOnUtteranceProgressListener(utteranceProgressListener);
 
         webView.setWebChromeClient(new WebChromeClient() {
@@ -185,7 +183,6 @@ public class ChatGptHelper extends AppCompatActivity {
             webView.evaluateJavascript(allParagraph, new ValueCallback<String>() {
                 @Override
                 public void onReceiveValue(String value) {
-                    // Store the paragraph content in a string object
 
                     String paragraphString = value;
                     String utteranceId = UUID.randomUUID().toString();
