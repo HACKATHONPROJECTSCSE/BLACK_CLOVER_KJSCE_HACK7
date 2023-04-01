@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FarmHelper</string>
+    <string name="app_name">AgroMate</string>
     <string name="buttonSelectPhoto">Select Photo</string>
     <string name="buttonTakePhoto">Start Camera</string>
     <string name="buttonDiagnose">Detect</string>
