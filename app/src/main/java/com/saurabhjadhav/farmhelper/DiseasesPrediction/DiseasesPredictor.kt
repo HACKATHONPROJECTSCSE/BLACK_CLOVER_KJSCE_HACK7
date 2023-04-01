@@ -10,7 +10,9 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,8 +28,9 @@ class DiseasesPredictor : AppCompatActivity() {
     lateinit var mPhotoImageView: ImageView
     lateinit var mCameraButton : TextView
     lateinit var mGalleryButton : TextView
-    lateinit var mDetectButton : Button
+    lateinit var mDetectButton : TextView
     lateinit var mResultTextView : TextView
+    lateinit var learn_more_tv : TextView
 
     private val mCameraRequestCode = 0
     private val mGalleryRequestCode = 2
@@ -49,6 +52,7 @@ class DiseasesPredictor : AppCompatActivity() {
         mGalleryButton = findViewById(R.id.mGalleryButton);
         mDetectButton = findViewById(R.id.mDetectButton);
         mResultTextView = findViewById(R.id.mResultTextView);
+        learn_more_tv = findViewById(R.id.learn_more_tv);
 
         mClassifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
 
@@ -76,8 +80,18 @@ class DiseasesPredictor : AppCompatActivity() {
         mDetectButton.setOnClickListener {
             val results = mClassifier.recognizeImage(mBitmap).firstOrNull()
             mResultTextView.text = results?.title + "\n Confidence:" + results?.confidence
+            learn_more_tv.visibility= View.VISIBLE
 
         }
+
+        learn_more_tv.setOnClickListener {
+            val intent = Intent(this, LearnMoreActivity::class.java)
+            val results = mClassifier.recognizeImage(mBitmap).firstOrNull()
+            val disease = results?.title
+            intent.putExtra("disease", ""+disease);
+                startActivity(intent)
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
