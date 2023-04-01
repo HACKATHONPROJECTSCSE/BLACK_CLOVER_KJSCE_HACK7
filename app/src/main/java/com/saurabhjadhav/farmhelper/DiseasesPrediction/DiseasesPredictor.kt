@@ -24,8 +24,8 @@ class DiseasesPredictor : AppCompatActivity() {
     private lateinit var mBitmap: Bitmap
 
     lateinit var mPhotoImageView: ImageView
-    lateinit var mCameraButton : Button
-    lateinit var mGalleryButton : Button
+    lateinit var mCameraButton : TextView
+    lateinit var mGalleryButton : TextView
     lateinit var mDetectButton : Button
     lateinit var mResultTextView : TextView
 
@@ -46,9 +46,9 @@ class DiseasesPredictor : AppCompatActivity() {
 
         mCameraButton = findViewById(R.id.mCameraButton);
         mPhotoImageView = findViewById(R.id.mPhotoImageView);
+        mGalleryButton = findViewById(R.id.mGalleryButton);
         mDetectButton = findViewById(R.id.mDetectButton);
         mResultTextView = findViewById(R.id.mResultTextView);
-        mGalleryButton = findViewById(R.id.mGalleryButton);
 
         mClassifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
 
@@ -60,11 +60,15 @@ class DiseasesPredictor : AppCompatActivity() {
         }
 
         mCameraButton.setOnClickListener {
+            mCameraButton.setBackground(getResources().getDrawable(R.drawable.btn_select));
+            mGalleryButton.setBackground(getResources().getDrawable(R.drawable.btn_notselect));
             val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(callCameraIntent, mCameraRequestCode)
         }
 
         mGalleryButton.setOnClickListener {
+            mCameraButton.setBackground(getResources().getDrawable(R.drawable.btn_notselect));
+            mGalleryButton.setBackground(getResources().getDrawable(R.drawable.btn_select));
             val callGalleryIntent = Intent(Intent.ACTION_PICK)
             callGalleryIntent.type = "image/*"
             startActivityForResult(callGalleryIntent, mGalleryRequestCode)
