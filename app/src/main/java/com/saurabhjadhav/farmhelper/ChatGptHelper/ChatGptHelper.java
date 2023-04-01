@@ -28,6 +28,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -45,6 +46,8 @@ public class ChatGptHelper extends AppCompatActivity {
     Intent data;
     TextToSpeech textToSpeech;
 
+    ImageView mic;
+
     int paragraphCount;
     public String USER_AGENT = "(Android " + Build.VERSION.RELEASE + ") Chrome/110.0.5481.63 Mobile";
 
@@ -58,6 +61,8 @@ public class ChatGptHelper extends AppCompatActivity {
         webView = findViewById(R.id.webview);
         progressBar = findViewById(R.id.progressBar);
 
+        mic = findViewById(R.id.mic);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Please Wait...");
         paragraphCount = 1;
@@ -67,6 +72,13 @@ public class ChatGptHelper extends AppCompatActivity {
         webSettings.setUserAgentString(USER_AGENT);
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setDomStorageEnabled(true);
+
+        mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onMicPressed();
+            }
+        });
 
 
         webView.setWebViewClient(new MyWebViewClient());

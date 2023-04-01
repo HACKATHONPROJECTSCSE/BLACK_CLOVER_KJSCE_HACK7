@@ -15,7 +15,7 @@
         android:theme="@style/Theme.FarmHelper"
         tools:targetApi="31">
         <activity
-            android:name=".ChatGptHelper"
+            android:name=".ChatGptHelper.ChatGptHelper"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
