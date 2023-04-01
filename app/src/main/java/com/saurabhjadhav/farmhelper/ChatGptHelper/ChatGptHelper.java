@@ -46,7 +46,7 @@ public class ChatGptHelper extends AppCompatActivity {
     Intent data;
     TextToSpeech textToSpeech;
 
-    ImageView mic;
+    ImageView mic,speak;
 
     int paragraphCount;
     public String USER_AGENT = "(Android " + Build.VERSION.RELEASE + ") Chrome/110.0.5481.63 Mobile";
@@ -62,6 +62,7 @@ public class ChatGptHelper extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         mic = findViewById(R.id.mic);
+        speak = findViewById(R.id.speak);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Please Wait...");
@@ -77,6 +78,13 @@ public class ChatGptHelper extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onMicPressed();
+            }
+        });
+
+        speak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSpeakerPressed();
             }
         });
 
@@ -178,7 +186,8 @@ public class ChatGptHelper extends AppCompatActivity {
                     + "var combinedText='';"
                     + "for (var i =" + paragraphCount + "-1; i < paragraphs.length; i++) {"
                     + "combinedText+= paragraphs[i].textContent;"
-                    + " }combinedText;";
+                    + " }combinedText;" ;
+            "Saurabh"
 
             webView.evaluateJavascript(allParagraph, new ValueCallback<String>() {
                 @Override
