@@ -1,4 +1,4 @@
-# Farm-Help
+# AgroMate
 
 "Empowering farmers with technology, one crop at a time."
 ## Problem Statement
