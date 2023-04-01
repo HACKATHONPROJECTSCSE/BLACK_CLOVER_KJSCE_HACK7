@@ -15,7 +15,14 @@
         android:theme="@style/Theme.FarmHelper"
         tools:targetApi="31">
         <activity
-            android:name=".WeatherActivity"
+            android:name=".DashboardContact"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Weather.WeatherActivity"
             android:exported="false" />
         <activity
             android:name=".ChatGptHelper.ChatGptHelper"

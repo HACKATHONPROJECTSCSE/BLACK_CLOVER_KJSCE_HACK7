@@ -10,10 +10,11 @@ import android.widget.LinearLayout;
 
 import com.saurabhjadhav.farmhelper.ChatGptHelper.ChatGptHelper;
 import com.saurabhjadhav.farmhelper.DiseasesPrediction.DiseasesPredictor;
+import com.saurabhjadhav.farmhelper.Weather.WeatherActivity;
 
 public class Dashboard extends AppCompatActivity {
 
-    LinearLayout PlantDiseasesPredictor, ChatBot;
+    LinearLayout PlantDiseasesPredictor, Weather, ChatBot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class Dashboard extends AppCompatActivity {
 
         PlantDiseasesPredictor = findViewById(R.id.PlantDieasesPrediction);
         ChatBot = findViewById(R.id.ChatBot);
+        Weather = findViewById(R.id.Weather);
 
         PlantDiseasesPredictor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +36,13 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Dashboard.this, ChatGptHelper.class));
+            }
+        });
+
+        Weather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Dashboard.this, WeatherActivity.class));
             }
         });
 
