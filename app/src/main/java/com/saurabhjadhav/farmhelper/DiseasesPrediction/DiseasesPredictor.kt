@@ -97,7 +97,7 @@ class DiseasesPredictor : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == mCameraRequestCode) {
-            //Considérons le cas de la caméra annulée
+
             if (resultCode == Activity.RESULT_OK && data != null) {
                 mBitmap = data.extras!!.get("data") as Bitmap
                 mBitmap = scaleImage(mBitmap)
